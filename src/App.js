@@ -1,7 +1,20 @@
+import styled from "styled-components/";
+
+const Title = styled.h1`
+  font-size: 3em;
+  text-align: center;
+  color: palevioletred;
+`;
+const Wrapper = styled.section`
+  padding: 4em;
+  background: yellow;
+`;
 
 function App() {
   return (
-    <h1 style={{textAlign:"center"}}>It's gonna awesome</h1>
+    <Wrapper>
+      <Title>It's gonna awesome!</Title>
+    </Wrapper>
   );
 }
 
