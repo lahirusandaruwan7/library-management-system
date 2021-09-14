@@ -5,9 +5,11 @@ export const Header = styled.header`
   
 `;
 export const Main = styled.main`
-  height: 95vh;
+ 
 `;
 export const Footer = styled.footer`
+height: 85vh;
   display: flex;
   justify-content: center;
+
 `;
