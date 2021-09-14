@@ -1,7 +1,8 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
+import { BsBookHalf } from "react-icons/bs";
 
-import { Header, Main, Footer } from "./components/Layout";
+import { Main, Footer } from "./components/Layout";
 import { Navbar, NavItem, NavLink } from "./components/Navbar";
 function App() {
   const theme = {
@@ -17,16 +18,19 @@ function App() {
   };
   return (
     <ThemeProvider theme={theme}>
-      <Header>
-        <Navbar>
-          <NavItem>
-            <NavLink href="#">Catalog</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">Dashboard</NavLink>
-          </NavItem>
-        </Navbar>
-      </Header>
+      <Navbar>
+        <NavItem>
+          <NavLink>
+            <BsBookHalf></BsBookHalf>
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#">Catalog</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#">Dashboard</NavLink>
+        </NavItem>
+      </Navbar>
 
       <Main>This is main.</Main>
       <Footer>This is footer.</Footer>

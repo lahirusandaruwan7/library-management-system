@@ -1,14 +1,13 @@
 import styled from "styled-components/";
 
 
-export const Header = styled.header`
-  
-`;
+
 export const Main = styled.main`
- 
+ min-height:100vh;
+ padding :2.5vh;
 `;
 export const Footer = styled.footer`
-height: 85vh;
+
   display: flex;
   justify-content: center;
 
