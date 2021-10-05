@@ -36,10 +36,10 @@ function App() {
       </Navbar>
 
       <Main>
-        This is main.
+     
         <Dashboard></Dashboard>
       </Main>
-      <Footer>This is footer.</Footer>
+      <Footer>Copyright {new Date().getFullYear()} &copy; Spark Academy{" "}</Footer>
     </ThemeProvider>
   );
 }

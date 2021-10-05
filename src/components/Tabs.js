@@ -1,9 +1,16 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 
-export const Tabs = styled.div`
+export const TabsContainer = styled.div`
   overflow: hidden;
   background: #fff;
   height: 100%;
+`;
+const TabButtonContainer = styled.div`
+  > * {
+    flex: 1 1 0;
+    max-width: 10em;
+  }
 `;
 
 export const Tab = styled.button`
@@ -11,25 +18,26 @@ export const Tab = styled.button`
   outline: none;
   cursor: pointer;
   position: relative;
-  margin-right: 0.1em;
+  padding: 8px 20px;
   font-size: 1em;
   border: ${(props) => (props.active ? "" : "1px solid #ccc")};
   border-bottom: none;
-  background-color: ${(props) => (props.active ? "#039be5" : "#fff")};
+  background-color: ${(props) =>
+    props.active ? props.theme.primary.main : "#fff"};
   height: 3em;
-  color: ${(props) => (props.active ? "#fff" : "#000")};
+  color: ${(props) => props.theme.primary.textColor};
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
-
+  margin: 0px 5px 0px 0px;
   :hover {
-    background-color: #4fc3f7;
+    background-color: ${(props) => props.theme.primary.light};
   }
 `;
 
-export const TabContent = styled.div`
-  border: 0.25em solid #039be5;
-  border-top: 0.5em solid #039be5;
-  border-top-left-radius: 1em;
+export const TabContents = styled.div`
+  border: 0.25em solid ${(props) => props.theme.primary.main};
+  border-top: 0.5em solid ${(props) => props.theme.primary.main};
+ 
   border-top-right-radius: 1em;
   min-height: 80vh;
 `;
@@ -37,3 +45,41 @@ export const TabContent = styled.div`
 export const Content = styled.div`
   ${(props) => (props.active ? "" : "display:none")}
 `;
+
+export default function Tabs(props) {
+  const { contents } = props;
+
+  const [active, setActive] = useState(0);
+
+  const handleClick = (event) => {
+    const index = parseInt(event.target.id, 0);
+    if (index !== active) {
+      setActive(index);
+    }
+  };
+  return (
+    <TabsContainer>
+      <TabButtonContainer>
+        {contents.map((content, index) => (
+          <Tab onClick={handleClick} active={active === index} id={index}>
+            {content.title}
+          </Tab>
+        ))}
+      </TabButtonContainer>
+      <TabContents>
+        {contents.map((content, index) => (
+          <Content active={active === index}>{content.elements}</Content>
+        ))}
+      </TabContents>
+    </TabsContainer>
+  );
+}
+
+/*const [active, setActive] = useState(0);
+
+const handleClick = (event) => {
+  const index = parseInt(event.target.id, 0);
+  if (index !== active) {
+    setActive(index);
+  }
+};*/
