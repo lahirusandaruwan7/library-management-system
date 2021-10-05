@@ -5,8 +5,10 @@ export const TabsContainer = styled.div`
   overflow: hidden;
   background: #fff;
   height: 100%;
+  width:100%;
 `;
 const TabButtonContainer = styled.div`
+  display:flex;
   > * {
     flex: 1 1 0;
     max-width: 10em;
@@ -18,7 +20,7 @@ export const Tab = styled.button`
   outline: none;
   cursor: pointer;
   position: relative;
-  padding: 8px 20px;
+  
   font-size: 1em;
   border: ${(props) => (props.active ? "" : "1px solid #ccc")};
   border-bottom: none;
@@ -28,7 +30,7 @@ export const Tab = styled.button`
   color: ${(props) => props.theme.primary.textColor};
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
-  margin: 0px 5px 0px 0px;
+ 
   :hover {
     background-color: ${(props) => props.theme.primary.light};
   }
