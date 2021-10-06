@@ -18,7 +18,7 @@ function App() {
     secondary: {
       main: "#fff",
     },
-    spacing: (factor) => `$(factor * 8)px`,
+    spacing: (factor) => `${factor * 8}px`,
   };
   return (
     <ThemeProvider theme={theme}>
