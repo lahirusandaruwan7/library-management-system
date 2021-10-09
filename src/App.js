@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { ThemeProvider } from "styled-components";
 import { BsBookHalf } from "react-icons/bs";
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Header, Main, Footer } from "./components/Layout";
 import { Navbar, NavItem, NavLink } from "./components/Navbar";
@@ -11,6 +11,10 @@ import { DASHBOARD, CATALOG } from "./shared/routes";
 
 const Dashboard = React.lazy(() => {
   return import("./containers/Dashboard");
+});
+
+const NotFound = React.lazy(() => {
+  return import("./containers/404");
 });
 
 function App() {
@@ -31,8 +35,8 @@ function App() {
     <Suspense fallback={<Spinner></Spinner>}>
       <Switch>
         <Route exact path={DASHBOARD} component={Dashboard} />
-
         <Route exact path={CATALOG} component={Spinner} />
+        <Route component={NotFound} />
       </Switch>
     </Suspense>
   );
