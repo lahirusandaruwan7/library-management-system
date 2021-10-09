@@ -1,11 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { ThemeProvider } from "styled-components";
 import { BsBookHalf } from "react-icons/bs";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import { Header, Main, Footer } from "./components/Layout";
 import { Navbar, NavItem, NavLink } from "./components/Navbar";
+import Spinner from "./components/Spinner";
 
-import Dashboard from "./containers/Dashboard";
+import { DASHBOARD, CATALOG } from "./shared/routes";
+
+const Dashboard = React.lazy(() => {
+  return import("./containers/Dashboard");
+});
 
 function App() {
   const theme = {
@@ -20,25 +26,36 @@ function App() {
     },
     spacing: (factor) => `${factor * 8}px`,
   };
+
+  let routes = (
+    <Suspense fallback={<Spinner></Spinner>}>
+      <Switch>
+        <Route exact path={DASHBOARD} component={Dashboard} />
+
+        <Route exact path={CATALOG} component={Spinner} />
+      </Switch>
+    </Suspense>
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <Header>
         <Navbar>
           <NavItem>
-            <NavLink>
+            <NavLink href={CATALOG}>
               <BsBookHalf></BsBookHalf>
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Catalog</NavLink>
+            <NavLink href={CATALOG}>Catalog</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Dashboard</NavLink>
+            <NavLink href={DASHBOARD}>Dashboard</NavLink>
           </NavItem>
         </Navbar>
       </Header>
       <Main>
-        <Dashboard></Dashboard>
+        <Router>{routes}</Router>
       </Main>
       <Footer>
         Copyright {new Date().getFullYear()} &copy; Spark Academy{" "}
