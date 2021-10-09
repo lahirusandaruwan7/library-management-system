@@ -1,4 +1,5 @@
 import React from "react";
+import Spinner from "../components/Spinner";
 
 import Tabs from "../components/Tabs";
 
@@ -8,7 +9,14 @@ const Dashboard = () => {
     { title: "Members", elements: <h1>Content of members go here</h1> },
   ];
 
-  return <Tabs contents={contents} />;
+  return (
+    <>
+    <Tabs contents={contents} />
+   
+   </>
+    
+  );
+  
 };
 
 export default Dashboard;
